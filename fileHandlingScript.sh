@@ -13,6 +13,7 @@ cd $unzippedFile
 rm ./*.html
 pwd
 
+currentStudent=""
 currentFolder=""
 for file in *
 do
@@ -23,12 +24,13 @@ do
 
     if [ "$currentFolder" != "$fileName" ]
     then
-        mkdir $fileName
-        mv "$file" ./$fileName/$newFileName
+        currentStudent=$(python ./../lastNameFirst.py $fileName)
+        mkdir $currentStudent
+        mv "$file" ./$currentStudent/$newFileName
         currentFolder=$fileName
-        cp ../makefile ./$currentFolder
+        cp ../makefile ./$currentStudent
     else
-        mv "$file" ./$currentFolder/$newFileName
+        mv "$file" ./$currentStudent/$newFileName
     fi
 done
 
