@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+#!/usr/bin/python
+>>>>>>> 4c29bd5901abbdad6ef98443b0c33f5acef04aef
 from sys import argv
 
 def lastNameFirst(nameString):
