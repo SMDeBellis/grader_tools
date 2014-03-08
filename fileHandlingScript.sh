@@ -1,4 +1,7 @@
 #/bin/bash
+
+#Copyright © 2014 Sean DeBellis
+
 debug=true
 
 zipFile=$1
@@ -17,7 +20,7 @@ currentStudent=""
 currentFolder=""
 for file in *
 do
-    fileName=$(python ./../gradingScript.py $file) #parses out students name 
+    fileName=$(python ./../parseName.py $file) #parses out students name 
     #echo fileName: $fileName                      # first then last name
     #echo file: $file
     newFileName=$(echo "$file" | tr -d ' ')
@@ -34,8 +37,10 @@ do
     fi                                                  #off d2l added character of file name.
 done
 
+chmod 755 ./*
+
 #run make on all folders
-for file in *
+for file in ./*
 do
     cd $file
     touch grader_notes.txt
