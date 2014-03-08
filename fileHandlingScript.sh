@@ -17,21 +17,21 @@ currentStudent=""
 currentFolder=""
 for file in *
 do
-    fileName=$(python ./../gradingScript.py $file)
-    #echo fileName: $fileName
+    fileName=$(python ./../gradingScript.py $file) #parses out students name 
+    #echo fileName: $fileName                      # first then last name
     #echo file: $file
     newFileName=$(echo "$file" | tr -d ' ')
 
     if [ "$currentFolder" != "$fileName" ]
     then
-        currentStudent=$(python ./../lastNameFirst.py $fileName)
+        currentStudent=$(python ./../lastNameFirst.py $fileName) #swaps first and last name
         mkdir $currentStudent
-        mv "$file" ./$currentStudent/$newFileName
+        mv "$file" ./$currentStudent/${newFileName##*-}
         currentFolder=$fileName
         cp ../makefile ./$currentStudent
     else
-        mv "$file" ./$currentStudent/$newFileName
-    fi
+        mv "$file" ./$currentStudent/${newFileName##*-} #moves file to proper directory and cuts
+    fi                                                  #off d2l added character of file name.
 done
 
 #run make on all folders
