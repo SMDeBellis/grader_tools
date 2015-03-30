@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 #Copyright © 2014 Sean DeBellis
 
